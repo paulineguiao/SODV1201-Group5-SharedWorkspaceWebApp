@@ -5,9 +5,9 @@ const jwt = require("jsonwebtoken");
 
 // REGISTER USER
 exports.register = (req, res) => {
-    const { name, email, password, role } = req.body;
+    const { name, phone, email, password, role } = req.body;
 
-    if (!name || !email || !password || !role) {
+    if (!name || !phone || !email || !password || !role) {
         return res.status(400).json({ message: "All fields are required" });
     }
 
@@ -20,8 +20,8 @@ exports.register = (req, res) => {
         const hashedPassword = await bcrypt.hash(password, 10);
 
         db.run(
-            "INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)",
-            [name, email, hashedPassword, role],
+            "INSERT INTO users (name, phone, email, password, role) VALUES (?, ?, ?, ?, ?)",
+            [name, phone, email, hashedPassword, role],
             function (err) {
                 if (err) {
                     return res.status(500).json({ message: "Database error" });
