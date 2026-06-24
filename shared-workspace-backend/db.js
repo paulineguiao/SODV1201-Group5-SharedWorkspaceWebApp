@@ -38,22 +38,37 @@ const db = new sqlite3.Database(dbPath, (err) => {
         `);
 
         // WORKSPACES TABLE
-        db.run(`
-            CREATE TABLE IF NOT EXISTS workspaces (
-                id INTEGER PRIMARY KEY AUTOINCREMENT,
-                property_id INTEGER NOT NULL,
-                type TEXT NOT NULL,
-                seats INTEGER NOT NULL,
-                smoking INTEGER NOT NULL,
-                availability_date TEXT NOT NULL,
-                lease_term TEXT NOT NULL CHECK(lease_term IN ('day','week','month')),
-                price REAL NOT NULL,
-                FOREIGN KEY (property_id) REFERENCES properties(id)
-            )
-        `);
+db.run(`
+    CREATE TABLE IF NOT EXISTS workspaces (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        property_id INTEGER NOT NULL,
+        type TEXT NOT NULL,
+        seats INTEGER NOT NULL,
+        smoking INTEGER NOT NULL,
+        availability_date TEXT NOT NULL,
+        lease_term TEXT NOT NULL CHECK(lease_term IN ('day','week','month')),
+        price REAL NOT NULL,
+        image_url TEXT,
+        FOREIGN KEY (property_id) REFERENCES properties(id)
+    )
+`);
     }
 });
 
+db.run(`
+            CREATE TABLE IF NOT EXISTS workspace_reviews (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                workspace_id INTEGER NOT NULL,
+                user_id INTEGER NOT NULL,
+                rating INTEGER NOT NULL CHECK(rating BETWEEN 1 AND 5),
+                comment TEXT NOT NULL,
+                created_at TEXT DEFAULT CURRENT_TIMESTAMP,
+                FOREIGN KEY (workspace_id) REFERENCES workspaces(id),
+                FOREIGN KEY (user_id) REFERENCES users(id)
+            )
+        `);
+
+/*
 // RATINGS TABLE (for coworker to workspace)
 db.run(`
     CREATE TABLE IF NOT EXISTS ratings (
@@ -76,7 +91,7 @@ db.run(`
         FOREIGN KEY (workspace_id) REFERENCES workspaces(id),
         FOREIGN KEY (user_id) REFERENCES users(id)
     )
-`);
+`);*/
 
 // OWNER → COWORKER RATINGS TABLE
 db.run(`
