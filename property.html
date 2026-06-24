@@ -4,12 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Property Page</title>
-    <link rel="stylesheet" href="property.css">
+    <link rel="stylesheet" href="css/property.css">
 </head>
 
 <body>
 
-<!-- HEADER -->
 <header class="header">
     <div class="logo">GROUP 5</div>
 
@@ -20,7 +19,6 @@
     </nav>
 </header>
 
-<!-- MAIN -->
 <div class="container">
 
     <h2>PROPERTY</h2>
@@ -28,38 +26,38 @@
 
     <form id="propertyForm">
 
-    <label>Address:</label>
+        <input type="hidden" id="propertyId">
+
+        <label>Address:</label>
         <input type="text" id="address">
         <p class="error" id="addressError"></p>
 
-    <label>Neighborhood:</label>
+        <label>Neighborhood:</label>
         <input type="text" id="neighborhood">
 
-    <label>Square Feet:</label>
+        <label>Square Feet:</label>
         <input type="number" id="sqft">
 
-    <div class="form-row">
-        <label>Parking Available:</label>
+        <div class="form-row">
+            <label>Parking Available:</label>
+            <div class="options">
+                <label><input type="radio" name="parking" value="Yes"> Yes</label>
+                <label><input type="radio" name="parking" value="No"> No</label>
+            </div>
+        </div>
 
-    <div class="options">
-        <label><input type="radio" name="parking" value="Yes"> Yes</label>
-        <label><input type="radio" name="parking" value="No"> No</label>
-    </div>
-</div>
+        <div class="form-row">
+            <label>Accessible by Public Transport:</label>
+            <div class="options">
+                <label><input type="radio" name="transport" value="Yes"> Yes</label>
+                <label><input type="radio" name="transport" value="No"> No</label>
+            </div>
+        </div>
 
-<div class="form-row">
-    <label>Accessible by Public Transport:</label>
+        <label>Upload Image:</label>
+        <input type="file" id="imageUpload" name="image">
 
-    <div class="options">
-        <label><input type="radio" name="transport" value="Yes"> Yes</label>
-        <label><input type="radio" name="transport" value="No"> No</label>
-    </div>
-</div>
-
-    <label>Upload Image:</label>
-    <input type="file" id="imageUpload">
-
-    <button type="button" onclick="saveProperty()">Add / Update Property</button>
+        <button type="button" id="saveBtn">Add / Update Property</button>
 
     </form>
 
@@ -67,12 +65,10 @@
 
 </div>
 
-<!-- FOOTER -->
 <footer class="footer">
   © 2026 Group 5
 </footer>
 
-<script src="js/data.js"></script>
-<script src="property.js"></script>
+<script type="module" src="js/property.js"></script>
 </body>
 </html>
