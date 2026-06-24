@@ -2,7 +2,9 @@
 const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
+const path = require("path");
 const db = require("./db");
+
 
 dotenv.config();
 
@@ -12,11 +14,15 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
 // Routes (we will create these files next)
 app.use("/api/auth", require("./routes/authRoutes"));
 app.use("/api/properties", require("./routes/propertyRoutes"));
 app.use("/api/workspaces", require("./routes/workspaceRoutes"));
 app.use("/api/coworkers", require("./routes/coworkerRatingRoutes"));
+app.use("/api/users", require("./routes/userRoutes"));
+
 
 
 // Default route
