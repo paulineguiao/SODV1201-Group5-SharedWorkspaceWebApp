@@ -4,97 +4,73 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rate Coworker</title>
-    <link rel="stylesheet" href="rate-coworker.css">
-    <link rel="stylesheet" href="workspace-details.css">
-
+    <link rel="stylesheet" href="css/rate-coworker.css">
+    <link rel="stylesheet" href="css/workspace-details.css">
 </head>
+
 <body>
 
-    <header>
-        <h1>Group 5<br><br></h1>
+<header>
+    <h1>Group 5<br><br></h1>
 
-        <div class="top-buttons">
-            <button class="nav-btn" onclick="goHome()">Home</button>
-            <button class="nav-btn" onclick="logout()">Logout</button>
-        </div>
-    </header>
+    <div class="top-buttons">
+        <button class="nav-btn" onclick="goHome()">Home</button>
+        <button class="nav-btn" onclick="logout()">Logout</button>
+    </div>
+</header>
 
-    <main>
+<main>
 
-        <div class="coworker-container">
+    <div class="coworker-container">
 
-            <div class="coworker-left">
+        <div class="coworker-left">
 
-                <h2>RATE COWORKER</h2>
+            <h2>RATE COWORKER</h2>
 
-                <div class="detail-row">
-                    <label>Coworker Name:</label>
-                    <input type="text">
-                </div>
-
-                <div class="detail-row">
-                    <label>Workspace Used:</label>
-                    <input type="text" value="Owner's Property">
-                </div>
-
-                <div class="detail-row">
-                    <label>Date of Use:</label>
-                    <input type="date">
-                </div>
-
-                <div class="detail-row">
-                    <label>Rating:</label>
-                    <div class="stars">★★★★★</div>
-                </div>
-
+            <div class="detail-row">
+                <label>Select Coworker:</label>
+                <select id="coworkerSelect"></select>
             </div>
 
-            <div class="coworker-right">
-
-               <div class="review-box">
-
-                    <h3>Rate this Coworker:</h3>
-
-                    <div class="stars">☆☆☆☆☆</div>
-
-                    <textarea
-                        id="coworkerReview"
-                        placeholder="Write your review here..."
-                    ></textarea>
-
-                    <button class="submit-btn" onclick="submitCoworkerReview()">
-                        Submit Review
-                    </button>
-
-                </div>
-
-                <h3>Previous Reviews:</h3>
-
-                <div id="coworkerReviews">
-
-                    <div class="review-card">
-                        <span>"Great communication!" - Owner Name</span>
-                        <span class="stars">★★★★★</span>
-                    </div>
-
-                    <div class="review-card">
-                        <span>"Very respectful coworker." - Owner Name</span>
-                        <span class="stars">★★★★☆</span>
-                    </div>
-
-                </div>
-
+            <div class="detail-row">
+                <label>Rating:</label>
+                <div id="ratingStars" class="stars">☆☆☆☆☆</div>
             </div>
 
         </div>
 
-    </main>
+        <div class="coworker-right">
 
-    <footer>
-        <p>© 2026 Group 5</p>
-    </footer>
+            <div class="review-box">
 
-    <script src="rate-coworker.js"></script>
+                <h3>Write a Review:</h3>
+
+                <textarea
+                    id="coworkerReview"
+                    placeholder="Write your review here..."
+                ></textarea>
+
+                <button class="submit-btn" onclick="submitCoworkerReview()">
+                    Submit Review
+                </button>
+
+            </div>
+
+            <h3>Previous Reviews:</h3>
+
+            <div id="coworkerReviews"></div>
+
+        </div>
+
+    </div>
+
+</main>
+
+<footer>
+    <p>© 2026 Group 5</p>
+</footer>
+
+<script type="module" src="js/rate-coworker.js"></script>
 
 </body>
 </html>
