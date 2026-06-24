@@ -1,100 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Add Workspace</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
 
-<header>
-    <h1>Add Workspace</h1>
+    <header>
+        <h1>Add Workspace</h1>
 
-    <a href = "owner-dashboard.html"><button id="goHome" onclick="goHome()">Home</button></a>
-    <a href = "property.html"><button id = "addPropertyBtn" onclick="goProperty()">Add Property</button></a>
-    <button id="logoutBtn" onclick="logout()">Logout</button>
+        <a href="owner-dashboard.html"><button>Home</button></a>
+        <a href="property.html"><button>Add Property</button></a>
+        <button onclick="logout()">Logout</button>
+    </header>
 
-</header>
+    <form id="workspaceForm" class="workspace-form">
 
-<form id="workspaceForm" class="workspace-form">
+        <input type="hidden" id="workspaceId">
 
-    <h2>Add New Workspace</h2>
+        <h2>Add / Update Workspace</h2>
 
-    <!-- PROPERTY -->
-    <div class="form-group">
-        <label>Select Property</label>
-        <select id="property"></select>
-    </div>
-
-    <!-- TYPE (BULLET STYLE OPTIONS) -->
-    <div class="form-group">
-        <label>Workspace Type</label>
-
-        <div class="option-group">
-            <label class="option">
-                <input type="radio" name="type" value="Meeting Room" checked>
-                <span>Meeting Room</span>
-            </label>
-
-            <label class="option">
-                <input type="radio" name="type" value="Private Office">
-                <span>Private Office</span>
-            </label>
-
-            <label class="option">
-                <input type="radio" name="type" value="Open Desk">
-                <span>Open Desk</span>
-            </label>
+        <div class="form-group">
+            <label>Select Property</label>
+            <select id="property"></select>
         </div>
-    </div>
 
-    <!-- SEATS -->
-    <div class="form-group">
-        <label>Seats</label>
-        <input id="seats" type="number" placeholder="e.g. 10" required>
-    </div>
-
-    <!-- LEASE TERM (BULLET STYLE) -->
-    <div class="form-group">
-        <label>Lease Term</label>
-
-        <div class="option-group">
-            <label class="option">
-                <input type="radio" name="term" value="Day" checked>
-                <span>Day</span>
-            </label>
-
-            <label class="option">
-                <input type="radio" name="term" value="Week">
-                <span>Week</span>
-            </label>
-
-            <label class="option">
-                <input type="radio" name="term" value="Month">
-                <span>Month</span>
-            </label>
+        <div class="form-group">
+            <label>Workspace Type</label>
+            <div class="option-group">
+                <label class="option"><input type="radio" name="type" value="Meeting Room" checked> <span>Meeting
+                        Room</span></label>
+                <label class="option"><input type="radio" name="type" value="Private Office"> <span>Private
+                        Office</span></label>
+                <label class="option"><input type="radio" name="type" value="Open Desk"> <span>Open Desk</span></label>
+            </div>
         </div>
-    </div>
 
-    <!-- PRICE -->
-    <div class="form-group">
-        <label>Price</label>
-        <input id="price" type="number" placeholder="e.g. 250" required>
-    </div>
+        <div class="form-group">
+            <label>Seats</label>
+            <input id="seats" type="number" required>
+        </div>
 
-    <button type="submit" class="primary-btn">
-        Save Workspace
-    </button>
+        <div class="form-group">
+            <label>Smoking Allowed?</label>
+            <label><input type="radio" name="smoking" value="1"> Yes</label>
+            <label><input type="radio" name="smoking" value="0" checked> No</label>
+        </div>
 
-</form>
+        <div class="form-group">
+            <label>Availability Date:</label>
+            <input type="date" id="availability_date" required>
+        </div>
 
-<!-- FOOTER -->
-<footer class="footer">
-  © 2026 Group 5
-</footer>
+        <div class="form-group">
+            <label>Lease Term</label>
+            <div class="option-group">
+                <label class="option"><input type="radio" name="lease_term" value="day" checked>
+                    <span>Day</span></label>
+                <label class="option"><input type="radio" name="lease_term" value="week"> <span>Week</span></label>
+                <label class="option"><input type="radio" name="lease_term" value="month"> <span>Month</span></label>
+            </div>
+        </div>
 
-<script src="js/data.js"></script>
-<script src="js/workspace.js"></script>
+        <div class="form-group">
+            <label>Price</label>
+            <input id="price" type="number" required>
+        </div>
+
+        <div class="form-group">
+            <label>Upload Image</label>
+            <input type="file" id="imageUpload" name="image">
+            
+             <div id="preview"></div>
+        </div>
+
+        <br>
+        <button type="submit" class="primary-btn">Save Workspace</button>
+    </form>
+
+   
+
+    <footer class="footer">
+        © 2026 Group 5
+    </footer>
+
+    <script type="module" src="js/workspace.js"></script>
 
 </body>
+
 </html>
