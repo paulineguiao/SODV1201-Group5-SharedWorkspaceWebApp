@@ -55,15 +55,25 @@ exports.updateProperty = (req, res) => {
         "SELECT * FROM properties WHERE id = ?",
         [propertyId],
         (err, property) => {
-            if (!property) {
-                return res.status(404).json({ message: "Property not found" });
-            }
+            if (err) return res.status(500).json({ message: "Database error" });
+            if (!property) return res.status(404).json({ message: "Property not found" });
 
             if (property.owner_id !== req.user.id) {
                 return res.status(403).json({ message: "Not authorized" });
             }
 
-            const { address, neighborhood, square_feet, parking, public_transport } = req.body;
+            // FormData fields (always strings)
+            const address = req.body.address || property.address;
+            const neighborhood = req.body.neighborhood || property.neighborhood;
+            const square_feet = req.body.square_feet || property.square_feet;
+            const parking = req.body.parking !== undefined ? Number(req.body.parking) : property.parking;
+            const public_transport = req.body.public_transport !== undefined ? Number(req.body.public_transport) : property.public_transport;
+
+            // Handle image upload
+            let image_url = property.image_url;
+            if (req.file) {
+                image_url = `/uploads/${req.file.filename}`;
+            }
 
             db.run(
                 `UPDATE properties SET 
@@ -75,12 +85,12 @@ exports.updateProperty = (req, res) => {
                     image_url = ?
                  WHERE id = ?`,
                 [
-                    address || property.address,
-                    neighborhood || property.neighborhood,
-                    square_feet || property.square_feet,
-                    parking !== undefined ? (parking ? 1 : 0) : property.parking,
-                    public_transport !== undefined ? (public_transport ? 1 : 0) : property.public_transport,
-                    req.body.image_url || property.image_url,
+                    address,
+                    neighborhood,
+                    square_feet,
+                    parking,
+                    public_transport,
+                    image_url,
                     propertyId
                 ],
                 function (err) {
@@ -92,6 +102,7 @@ exports.updateProperty = (req, res) => {
         }
     );
 };
+
 
 // DELETE PROPERTY (owner only)
 exports.deleteProperty = (req, res) => {
@@ -118,6 +129,21 @@ exports.deleteProperty = (req, res) => {
                     res.json({ message: "Property deleted" });
                 }
             );
+        }
+    );
+};
+
+exports.getPropertyById = (req, res) => {
+    const id = req.params.id;
+
+    db.get(
+        `SELECT * FROM properties WHERE id = ?`,
+        [id],
+        (err, row) => {
+            if (err) return res.status(500).json({ message: "Database error" });
+            if (!row) return res.status(404).json({ message: "Property not found" });
+
+            res.json(row);
         }
     );
 };
