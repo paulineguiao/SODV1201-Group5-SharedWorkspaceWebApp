@@ -219,3 +219,17 @@ footer p {
             color: goldenrod;
             font-size: 18px;
         }
+
+
+        .interactive-star {
+    cursor: pointer;
+    font-size: 24px;
+    display: inline-block;
+    padding: 0 4px;
+    user-select: none;
+    transition: transform 0.1s ease;
+}
+
+.interactive-star:hover {
+    transform: scale(1.2);
+}
