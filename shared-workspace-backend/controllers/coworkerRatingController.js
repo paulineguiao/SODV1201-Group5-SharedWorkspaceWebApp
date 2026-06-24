@@ -47,3 +47,19 @@ exports.getCoworkerRatings = (req, res) => {
         });
     });
 };
+
+exports.getCoworkerReviews = (req, res) => {
+    const coworkerId = req.params.coworkerId; 
+
+    const query = `
+        SELECT rating, comment
+        FROM coworker_ratings
+        WHERE coworker_id = ?
+        ORDER BY created_at DESC
+    `;
+
+    db.all(query, [coworkerId], (err, rows) => {
+        if (err) return res.status(500).json({ message: "Database error" });
+        res.json(rows);
+    });
+};
