@@ -9,4 +9,6 @@ router.post("/:coworkerId/rate", authMiddleware, coworkerRatingController.rateCo
 // Get all ratings for a coworker
 router.get("/:coworkerId/ratings", coworkerRatingController.getCoworkerRatings);
 
+router.get("/:coworkerId/reviews", coworkerRatingController.getCoworkerReviews);
+
 module.exports = router;
