@@ -1,83 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Create Account Form</title>
-<link rel = "stylesheet" href = "registration.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account Form</title>
+    <link rel="stylesheet" href="css/registration.css">
 </head>
 
 <body>
 
-<div class="container">
+    <div class="container">
 
-    <!-- HEADER -->
-    <div class="header">
-        <img class="img" src = "header image.png">
+        <!-- HEADER -->
+        <div class="header">
+            <img class="img" src="header image.png">
+        </div>
+
+        <!-- CONTENT -->
+        <div class="content">
+
+            <h3>CREATE AN ACCOUNT</h3>
+
+            <form id="registrationForm">
+
+                <p id="errorMsg"></p>
+
+                <div class="form-group">
+                    <label>Full Name:</label>
+                    <input type="text" id="name">
+                </div>
+
+                <div class="form-group">
+                    <label>Phone:</label>
+                    <input type="text" id="phone">
+                </div>
+
+                <div class="form-group">
+                    <label>Email Address:</label>
+                    <input type="email" id="email">
+                </div>
+
+                <div class="form-group">
+                    <label>Password:</label>
+                    <input type="password" id="password">
+                </div>
+
+                <div class="role-group">
+                    <label>Role:</label>
+
+                    <input type="radio" name="role" value="owner" id="owner">
+                    <label for="owner">Owner</label>
+
+                    <input type="radio" name="role" value="coworker" id="coworker">
+                    <label for="coworker">Coworker</label>
+                </div>
+
+
+                <div class="buttons">
+                    <button type="submit" id="registerBtn">Register</button>
+                </div>
+
+                <div class="login-text">
+                    Already have an account?
+                    <a href="login.html"><button type="button">Login</button></a>
+                </div>
+
+            </form>
+
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer">
+            FOOTER <br>
+            © 2026 Group 5
+        </div>
+
     </div>
 
-    <!-- CONTENT -->
-    <div class="content">
-
-        <h3>CREATE AN ACCOUNT</h3>
-
-        <form onsubmit="registerUser(); return false;">
-
-            <div class="form-group">
-                <label>Full Name:</label>
-                <input type="text" id ="fullName">
-            </div>
-
-            <div class="form-group">
-                <label>Phone:</label>
-                <input type="text" id = "phone">
-            </div>
-
-            <div class="form-group">
-                <label>Email Address:</label>
-                <input type="email" id = "email">
-            </div>
-
-            <div class="form-group">
-                <label>Password:</label>
-                <input type="password" id="password">
-            </div>
-
-            <div class="role-group">
-                <label>Role:</label>
-
-                <input type="radio" name="role" id="owner">
-                <label for="owner">Owner</label>
-
-                <input type="radio" name="role" id="coworker">
-                <label for="coworker">Coworker</label>
-            </div>
-
-            <div class="buttons">
-                <button type="submit" id="registerBtn">Register</button>
-            </div>
-
-            <div class="login-text">
-                Already have an account?
-                <a href = "login.html"><button type="button">Login</button></a>
-            </div>
-
-        </form>
-
-    </div>
-
-    <!-- FOOTER -->
-    <div class="footer">
-        FOOTER <br>
-        © 2026 Group 5
-    </div>
-
-</div>
-
-
-<script src="js/data.js"></script>
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<script src="registration.js"></script>
+    <script type="module" src="js/registration.js"></script>
 
 </body>
+
 </html>
